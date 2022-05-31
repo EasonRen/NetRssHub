@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetRssHub", "NetRssHub\NetRssHub.csproj", "{DE85A24D-74DA-4557-B075-B4B4CD928AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetRssHub", "NetRssHub\NetRssHub.csproj", "{DE85A24D-74DA-4557-B075-B4B4CD928AC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetRssHub.Entity", "NetRssHub.Entity\NetRssHub.Entity.csproj", "{1112732F-963F-460E-93EF-5B0C90D5A82C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetRssHub.Services", "NetRssHub.Services\NetRssHub.Services.csproj", "{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{DE85A24D-74DA-4557-B075-B4B4CD928AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE85A24D-74DA-4557-B075-B4B4CD928AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE85A24D-74DA-4557-B075-B4B4CD928AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1112732F-963F-460E-93EF-5B0C90D5A82C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1112732F-963F-460E-93EF-5B0C90D5A82C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1112732F-963F-460E-93EF-5B0C90D5A82C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1112732F-963F-460E-93EF-5B0C90D5A82C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
