@@ -5,7 +5,7 @@ namespace NetRssHub.Services
 {
     public interface IRss
     {
-        SyndicationFeed GetRss();
+        Task<SyndicationFeed> GetRss();
         List<RouteInfo> GetRouteInfos();
     }
 }
