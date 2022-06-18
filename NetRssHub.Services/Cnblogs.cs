@@ -26,6 +26,9 @@ namespace NetRssHub.Services
         public async Task<SyndicationFeed> GetRss()
         {
             SyndicationFeed feed = new SyndicationFeed("博客园", "代码改变世界", new Uri("https://www.cnblogs.com/"), "https://www.cnblogs.com/", DateTime.Now);
+            feed.Generator = "NetRssHub";
+            feed.Language = "zh-cn";
+            
             List<SyndicationItem> items = new List<SyndicationItem>();
 
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://www.cnblogs.com/")
@@ -56,12 +59,16 @@ namespace NetRssHub.Services
                         var title = article.SelectSingleNode("./section/div/a");
                         var content = article.SelectSingleNode("./section/div/p");
                         var dateTime = article.SelectSingleNode("./section/footer/span[1]/span");
+                        var auther = article.SelectSingleNode("./section/footer/a[1]");
 
-                        syndicationItem.BaseUri = new Uri(title?.Attributes["href"]?.Value ?? string.Empty);
+                        //syndicationItem.BaseUri = new Uri(title?.Attributes["href"]?.Value ?? string.Empty);
                         syndicationItem.Title = new TextSyndicationContent(title?.InnerText ?? string.Empty);
-                        syndicationItem.Content = SyndicationContent.CreatePlaintextContent(content?.InnerText?? string.Empty);
-                        syndicationItem.Summary = SyndicationContent.CreatePlaintextContent(content?.InnerText ?? string.Empty);
+                        syndicationItem.Content = SyndicationContent.CreateHtmlContent(content?.InnerText ?? string.Empty);
+                        syndicationItem.Summary = SyndicationContent.CreateHtmlContent(content?.InnerText ?? string.Empty);
+                        syndicationItem.AddPermalink(new Uri(title?.Attributes["href"]?.Value ?? string.Empty));
+                        syndicationItem.Authors.Add(new SyndicationPerson(auther?.InnerText ?? string.Empty));
                         syndicationItem.PublishDate = DateTime.Parse(dateTime.InnerText);
+                        //syndicationItem.Categories.Add(new SyndicationCategory(auther?.InnerText ?? string.Empty));
 
                         items.Add(syndicationItem);
                     }

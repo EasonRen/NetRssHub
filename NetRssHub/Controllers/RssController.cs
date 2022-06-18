@@ -10,7 +10,7 @@ using System.Xml;
 namespace NetRssHub.Controllers
 {
     [ApiController]
-    [Route("rss")]
+    [Route("[controller]")]
     public class RssController : ControllerBase
     {
         private readonly ILogger<RssController> _logger;
@@ -43,7 +43,7 @@ namespace NetRssHub.Controllers
                 return new ContentResult
                 {
                     Content = sb.ToString(),
-                    ContentType = "text/xml",
+                    ContentType = "application/xml; charset=utf-8",
                     StatusCode = (int)HttpStatusCode.OK
                 };
             }
