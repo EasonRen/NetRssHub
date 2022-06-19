@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.ServiceModel.Syndication;
 using System.Text;
+using System.Text.Unicode;
 using System.Xml;
 
 namespace NetRssHub.Controllers
@@ -34,15 +35,20 @@ namespace NetRssHub.Controllers
             {
                 var feed = await rssService.GetRss();
 
-                var sb = new StringBuilder();
-                XmlWriter xmlWriter = XmlWriter.Create(sb);
+                using MemoryStream stream = new MemoryStream();
+                XmlWriterSettings settings = new XmlWriterSettings();
+                settings.Indent = true;
+                settings.Encoding = new UTF8Encoding(false);
+
+                XmlWriter xmlWriter = XmlWriter.Create(stream, settings);
                 feed.SaveAsRss20(xmlWriter);
                 xmlWriter.Flush();
                 xmlWriter.Close();
 
+                string xml = Encoding.UTF8.GetString(stream.ToArray());
                 return new ContentResult
                 {
-                    Content = sb.ToString(),
+                    Content = xml,
                     ContentType = "application/xml; charset=utf-8",
                     StatusCode = (int)HttpStatusCode.OK
                 };

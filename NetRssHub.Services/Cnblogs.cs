@@ -28,7 +28,7 @@ namespace NetRssHub.Services
             SyndicationFeed feed = new SyndicationFeed("博客园", "代码改变世界", new Uri("https://www.cnblogs.com/"), "https://www.cnblogs.com/", DateTime.Now);
             feed.Generator = "NetRssHub";
             feed.Language = "zh-cn";
-            
+
             List<SyndicationItem> items = new List<SyndicationItem>();
 
             var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://www.cnblogs.com/")
@@ -62,9 +62,9 @@ namespace NetRssHub.Services
                         var auther = article.SelectSingleNode("./section/footer/a[1]");
 
                         //syndicationItem.BaseUri = new Uri(title?.Attributes["href"]?.Value ?? string.Empty);
-                        syndicationItem.Title = new TextSyndicationContent(title?.InnerText ?? string.Empty);
-                        syndicationItem.Content = SyndicationContent.CreateHtmlContent(content?.InnerText ?? string.Empty);
-                        syndicationItem.Summary = SyndicationContent.CreateHtmlContent(content?.InnerText ?? string.Empty);
+                        syndicationItem.Title = new TextSyndicationContent($"<![CDATA[{title?.InnerText ?? string.Empty}]]>");
+                        syndicationItem.Content = SyndicationContent.CreateHtmlContent($"<![CDATA[{content?.InnerText ?? string.Empty}]]>");
+                        syndicationItem.Summary = SyndicationContent.CreateHtmlContent($"<![CDATA[{content?.InnerText ?? string.Empty}]]>");
                         syndicationItem.AddPermalink(new Uri(title?.Attributes["href"]?.Value ?? string.Empty));
                         syndicationItem.Authors.Add(new SyndicationPerson(auther?.InnerText ?? string.Empty));
                         syndicationItem.PublishDate = DateTime.Parse(dateTime.InnerText);
