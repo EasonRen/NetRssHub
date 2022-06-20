@@ -4,6 +4,7 @@ using NetRssHub.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,6 @@ namespace NetRssHub.Services
 
         public List<RouteInfo> GetRouteInfos()
         {
-            string? type = ParamInfo.TypeOrName;
             throw new NotImplementedException();
         }
 
@@ -62,9 +62,9 @@ namespace NetRssHub.Services
                         var auther = article.SelectSingleNode("./section/footer/a[1]");
 
                         //syndicationItem.BaseUri = new Uri(title?.Attributes["href"]?.Value ?? string.Empty);
-                        syndicationItem.Title = new TextSyndicationContent($"<![CDATA[{title?.InnerText ?? string.Empty}]]>");
-                        syndicationItem.Content = SyndicationContent.CreateHtmlContent($"<![CDATA[{content?.InnerText ?? string.Empty}]]>");
-                        syndicationItem.Summary = SyndicationContent.CreateHtmlContent($"<![CDATA[{content?.InnerText ?? string.Empty}]]>");
+                        syndicationItem.Title = new TextSyndicationContent(SecurityElement.Escape(title?.InnerText ?? string.Empty));
+                        syndicationItem.Content = SyndicationContent.CreateHtmlContent(SecurityElement.Escape(content?.InnerText ?? string.Empty));
+                        syndicationItem.Summary = SyndicationContent.CreatePlaintextContent(SecurityElement.Escape(content?.InnerText ?? string.Empty));
                         syndicationItem.AddPermalink(new Uri(title?.Attributes["href"]?.Value ?? string.Empty));
                         syndicationItem.Authors.Add(new SyndicationPerson(auther?.InnerText ?? string.Empty));
                         syndicationItem.PublishDate = DateTime.Parse(dateTime.InnerText);
