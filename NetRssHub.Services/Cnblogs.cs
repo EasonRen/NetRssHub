@@ -13,6 +13,8 @@ namespace NetRssHub.Services
 {
     public class Cnblogs : RssBase, IRss
     {
+        private static readonly string BASE_URL = "https://www.cnblogs.com/";
+
         public Cnblogs(ParamInfo paramInfo, HttpClient httpClient)
             : base(paramInfo, httpClient)
         {
@@ -31,7 +33,7 @@ namespace NetRssHub.Services
 
             List<SyndicationItem> items = new List<SyndicationItem>();
 
-            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://www.cnblogs.com/")
+            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, BuildUrl())
             {
                 Headers =
                 {
@@ -77,6 +79,29 @@ namespace NetRssHub.Services
 
             feed.Items = items;
             return feed;
+        }
+
+        private string BuildUrl()
+        {
+            var url = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(ParamInfo.Tag1))
+            {
+                if (ParamInfo.Tag1 == "48hour")
+                {
+                    url = "aggsite/topviews";
+                }
+                else if (ParamInfo.Tag1 == "recommend")
+                {
+                    url = "aggsite/topdiggs";
+                }
+                else if (ParamInfo.Tag1 == "48hourcomment")
+                {
+                    url = "aggsite/topcommented48h";
+                }
+            }
+
+            return $"{BASE_URL}{url}";
         }
     }
 }

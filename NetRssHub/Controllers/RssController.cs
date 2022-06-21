@@ -60,9 +60,18 @@ namespace NetRssHub.Controllers
         }
 
         [HttpGet("routes/{routeName}")]
-        public List<RouteInfo> RouteInfo(string routeName)
+        public IActionResult RouteInfo(string routeName)
         {
-            return new List<RouteInfo>();
+            var rssService = _rssFactory.CreateRssService(new ParamInfo { TypeOrName = routeName }, null);
+
+            if (rssService != null)
+            {
+                return Ok(rssService.GetRouteInfos());
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
