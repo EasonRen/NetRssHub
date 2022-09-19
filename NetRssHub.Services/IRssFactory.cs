@@ -1,4 +1,5 @@
-﻿using NetRssHub.Entity;
+﻿using NetRssHub.Common.Entity;
+using NetRssHub.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

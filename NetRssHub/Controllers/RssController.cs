@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using NetRssHub.Entity;
+using NetRssHub.Common.Entity;
 using NetRssHub.Services;
 using System.Net;
 using System.Net.Http;

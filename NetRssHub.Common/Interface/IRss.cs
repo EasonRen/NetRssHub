@@ -1,7 +1,10 @@
-﻿using NetRssHub.Entity;
+﻿using NetRssHub.Common.Entity;
+using System;
+using System.Collections.Generic;
 using System.ServiceModel.Syndication;
+using System.Threading.Tasks;
 
-namespace NetRssHub.Services
+namespace NetRssHub.Common.Interface
 {
     public interface IRss
     {

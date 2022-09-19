@@ -1,15 +1,18 @@
 ﻿using HtmlAgilityPack;
 using Microsoft.Net.Http.Headers;
-using NetRssHub.Entity;
+using NetRssHub.Common;
+using NetRssHub.Common.Entity;
+using NetRssHub.Common.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetRssHub.Services
+namespace NetRssHub.Plugins.Cnblogs
 {
     public class Cnblogs : RssBase, IRss
     {
@@ -42,7 +45,7 @@ namespace NetRssHub.Services
                 }
             };
 
-            var httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage);
+            var httpResponseMessage = await RssClient.SendAsync(httpRequestMessage);
 
             if (httpResponseMessage.IsSuccessStatusCode)
             {
