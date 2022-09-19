@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetRssHub", "NetRssHub\NetR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetRssHub.Services", "NetRssHub.Services\NetRssHub.Services.csproj", "{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetRssHub.Common", "NetRssHub.Common\NetRssHub.Common.csproj", "{602FF155-0F1B-42DC-A2B6-66D15D737F70}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetRssHub.Plugins.Cnblogs", "NetRssHub.Plugins.Cnblogs\NetRssHub.Plugins.Cnblogs.csproj", "{9FDBD860-89BB-426A-B615-4690CCB48DD3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,14 +21,6 @@ Global
 		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDBFA58D-09DF-4AB4-AA18-E0AEB5A87DEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{602FF155-0F1B-42DC-A2B6-66D15D737F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{602FF155-0F1B-42DC-A2B6-66D15D737F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{602FF155-0F1B-42DC-A2B6-66D15D737F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{602FF155-0F1B-42DC-A2B6-66D15D737F70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FDBD860-89BB-426A-B615-4690CCB48DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FDBD860-89BB-426A-B615-4690CCB48DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FDBD860-89BB-426A-B615-4690CCB48DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FDBD860-89BB-426A-B615-4690CCB48DD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
