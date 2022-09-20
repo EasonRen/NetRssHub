@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace NetRssHub.Services
 {
@@ -16,7 +17,9 @@ namespace NetRssHub.Services
         {
             var rootPath = AppDomain.CurrentDomain.BaseDirectory;
             var pluginsPath = Path.Combine(rootPath, "Plugins");
-            var currentPluginsPath = Directory.GetDirectories(pluginsPath).FirstOrDefault(a => a.EndsWith(paramInfo?.TypeOrName ?? string.Empty, StringComparison.OrdinalIgnoreCase));
+            string fileLine = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)? "\\":"/";
+
+            var currentPluginsPath = Directory.GetDirectories(pluginsPath).FirstOrDefault(a => a.EndsWith(string.Concat(fileLine, paramInfo?.TypeOrName ?? string.Empty), StringComparison.OrdinalIgnoreCase));
             if (currentPluginsPath == null)
             {
                 return null;
