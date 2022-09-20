@@ -15,7 +15,7 @@ namespace NetRssHub.Services
         public IRss CreateRssService(ParamInfo paramInfo, HttpClient httpClient)
         {
             var rootPath = AppDomain.CurrentDomain.BaseDirectory;
-            var allPluginsAssembly = Directory.GetFiles(Path.Combine(rootPath, "Plugins"), "NetRssHub.Plugins.*.dll").Select(Assembly.LoadFrom).ToList();
+            var allPluginsAssembly = Directory.GetFiles(Path.Combine(rootPath, "Plugins"), "NetRssHub.Plugins.*.dll").Where(a => a.Contains(paramInfo?.TypeOrName ?? string.Empty, StringComparison.OrdinalIgnoreCase)).Select(Assembly.LoadFrom).ToList();
 
             //Assembly currentAssembly = Assembly.GetAssembly(GetType());
             //var types = currentAssembly.GetTypes().Where(a => !a.IsInterface && a.IsClass && a.GetInterfaces().Contains(typeof(IRss)));
@@ -24,7 +24,8 @@ namespace NetRssHub.Services
 
             allPluginsAssembly?.ForEach(a =>
             {
-                types.AddRange(a.GetTypes().Where(a => !a.IsInterface && a.IsClass && a.GetInterfaces().Contains(typeof(IRss))));
+                //types.AddRange(a.GetTypes().Where(a => !a.IsInterface && a.IsClass && a.GetInterfaces().Contains(typeof(IRss))));
+                types.AddRange(a.GetTypes().Where(a => !a.IsInterface && a.IsClass && typeof(IRss).IsAssignableFrom(a)));
             });
             var currentType = types.Where(a => a.Name.ToLower() == paramInfo?.TypeOrName?.ToLower()).FirstOrDefault();
 
