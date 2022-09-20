@@ -16,7 +16,7 @@ namespace NetRssHub.Services
         {
             var rootPath = AppDomain.CurrentDomain.BaseDirectory;
             var pluginsPath = Path.Combine(rootPath, "Plugins");
-            var currentPluginsPath = Directory.GetDirectories(pluginsPath).FirstOrDefault(a => a.Contains(paramInfo?.TypeOrName ?? string.Empty, StringComparison.OrdinalIgnoreCase));
+            var currentPluginsPath = Directory.GetDirectories(pluginsPath).FirstOrDefault(a => a.EndsWith(paramInfo?.TypeOrName ?? string.Empty, StringComparison.OrdinalIgnoreCase));
             if (currentPluginsPath == null)
             {
                 return null;
