@@ -10,6 +10,6 @@ namespace NetRssHub.Services
 {
     public interface IRssFactory
     {
-        IRss CreateRssService(ParamInfo paramInfo, HttpClient httpClient);
+        IRss? CreateRssService(ParamInfo paramInfo, HttpClient httpClient);
     }
 }

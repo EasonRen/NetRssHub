@@ -12,10 +12,17 @@ namespace NetRssHub.Services
 {
     public class RssFactory : IRssFactory
     {
-        public IRss CreateRssService(ParamInfo paramInfo, HttpClient httpClient)
+        public IRss? CreateRssService(ParamInfo paramInfo, HttpClient httpClient)
         {
             var rootPath = AppDomain.CurrentDomain.BaseDirectory;
-            var allPluginsAssembly = Directory.GetFiles(Path.Combine(rootPath, "Plugins"), "NetRssHub.Plugins.*.dll").Where(a => a.Contains(paramInfo?.TypeOrName ?? string.Empty, StringComparison.OrdinalIgnoreCase)).Select(Assembly.LoadFrom).ToList();
+            var pluginsPath = Path.Combine(rootPath, "Plugins");
+            var currentPluginsPath = Directory.GetDirectories(pluginsPath).FirstOrDefault(a => a.Contains(paramInfo?.TypeOrName ?? string.Empty, StringComparison.OrdinalIgnoreCase));
+            if (currentPluginsPath == null)
+            {
+                return null;
+            }
+
+            var allPluginsAssembly = Directory.GetFiles(currentPluginsPath, "NetRssHub.Plugins.*.dll").Select(Assembly.LoadFrom).ToList();
 
             //Assembly currentAssembly = Assembly.GetAssembly(GetType());
             //var types = currentAssembly.GetTypes().Where(a => !a.IsInterface && a.IsClass && a.GetInterfaces().Contains(typeof(IRss)));
